@@ -12,5 +12,20 @@
 
 import UIKit
 
-class ___VARIABLE_sceneName___Worker {
+enum ___VARIABLE_sceneName___
+{
+  // MARK: Use cases
+  
+  enum Something
+  {
+    struct Request
+    {
+    }
+    struct Response
+    {
+    }
+    struct ViewModel
+    {
+    }
+  }
 }
