@@ -8,6 +8,7 @@ brew:
 	echo Installing Swiftformat
 	brew install swiftformat
 	echo Swiftformat installed
+	sudo gem install colorize
 
 scripts:
 	echo Installing Git-Hooks
