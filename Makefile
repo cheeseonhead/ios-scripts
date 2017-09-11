@@ -14,6 +14,5 @@ scripts:
 	sh install-hooks.sh
 	echo Git-Hooks installed
 	echo Installing Clean Swift Templates
-	cd CleanSwift/
-	make install_templates
+	make -f CleanSwift/Makefile install_templates
 	echo Clean Swift Templates installed
