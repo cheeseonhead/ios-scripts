@@ -2,7 +2,7 @@
 PATH=$PATH:/usr/local/bin:/usr/local/sbin
 
 # prepare the formatter
-swiftformat
+# swiftformat
 
 # format code
 git status --porcelain | grep "^[AM]  .*\.swift$" | cut -c4- | while read line; do
