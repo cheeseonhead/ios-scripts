@@ -10,10 +10,9 @@ brew:
 	echo Swiftformat installed
 	sudo gem install colorize
 
-scripts:
-	echo Installing Git-Hooks
-	sh install-hooks.sh
-	echo Git-Hooks installed
-	echo Installing Clean Swift Templates
-	cd CleanSwift; make install_templates
-	echo Clean Swift Templates installed
+scripts: install-hooks
+
+install-hooks:
+	cp config.swiftformat ../
+	cp commit-msg ../.git/hooks/
+	cp pre-commit ../.git/hooks/
