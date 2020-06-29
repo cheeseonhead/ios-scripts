@@ -8,11 +8,12 @@ brew:
 	echo Installing Swiftformat
 	brew install swiftformat
 	echo Swiftformat installed
-	sudo gem install colorize
+	echo Installing GitHub
+	brew install github/gh/gh
+	echo GitHub installed
 
 scripts: install-hooks
 
 install-hooks:
 	cp config.swiftformat ../
-	cp commit-msg ../.git/hooks/
-	cp pre-commit ../.git/hooks/
+	cp githooks/* ../.git/hooks
