@@ -1,18 +1,12 @@
-#!/usr/bin/env ruby
-require 'colorize'
-# borrowed from gitpro book http://git-scm.com/book/en/Customizing-Git-An-Example-Git-Enforced-Policy
-message_file = ARGV[0]
-message = File.open(message_file, "r:UTF-8", &:readline)
-$regex = /^(?!#)(.*?)(\d+)/
+# If commit message is a fixup message, ignore it.
+[[ -n "$(cat $1 | grep 'fixup!')" ]] && FIXUP="YES"
 
-if !$regex.match(message)
-  head = File.read("./.git/HEAD")
-  branch = $regex.match(head)
-  if (branch && branch.length == 3)
-    File.open(message_file, "w") {|f| f.write("#" + branch[2] + " | " + message) }
-    exit 0
-  end
-
-  puts "Warning: Your message is missing JIRA issue tag".yellow
-  exit 0
-end
+# Get the number between the slashes
+TICKET=$(git symbolic-ref HEAD | rev | rev | grep -o -E "[0-9]+" | head -n 1)
+echo $TICKET
+if [[ -n "${TICKET}" && -z "${FIXUP}" ]]; then
+   sed -i.bak -e "1s/^/\[#${TICKET}\] /" $1
+else
+    BRANCH=$(git branch | grep \* | cut -c3-)
+    sed -i.bak -e "1s;^;[#${TICKET}] ;" $1
+fi
